@@ -1,0 +1,30 @@
+{
+  "name": "gameapp",
+  "version": "1.0.0",
+  "description": "Game Apllication",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "SET NODE_ENV=test&& nodemon --exec mocha --recursive -R min"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlorisBotermans/GameApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FlorisBotermans/GameApp/issues"
+  },
+  "homepage": "https://github.com/FlorisBotermans/GameApp#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mocha": "^5.2.0",
+    "mongoose": "^5.3.14",
+    "nodemon": "^1.18.7",
+    "supertest": "^3.3.0"
+  }
+}
