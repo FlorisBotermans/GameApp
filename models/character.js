@@ -6,6 +6,4 @@ const CharacterSchema = new Schema({
     description: { type: String, required: true }
 });
 
-const Character = mongoose.model('character', CharacterSchema);
-
-module.exports = Character;
+module.exports = CharacterSchema;

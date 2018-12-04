@@ -6,6 +6,4 @@ const DeveloperSchema = new Schema({
     description: { type: String, required: true }
 });
 
-const Developer = mongoose.model('developer', DeveloperSchema);
-
-module.exports = Developer;
+module.exports = DeveloperSchema;
