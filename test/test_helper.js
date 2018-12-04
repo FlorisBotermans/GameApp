@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 before(done => {
-    mongoose.connect('mongodb://localhost/game_test', { useNewUrlParser: true });
+    mongoose.connect('mongodb://admin:Secret123@ds151082.mlab.com:51082/game_test', { useNewUrlParser: true });
     mongoose.connection
         .once('open', () => done())
-        .on('error', err => {
+        .on('error', error => {
             console.warn('Warning', error);
         });
 });

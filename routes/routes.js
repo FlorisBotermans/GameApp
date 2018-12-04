@@ -6,9 +6,9 @@ module.exports = (app) => {
     // GAME CRUD
     app.post('/api/games', GamesController.createGame);
     app.get('/api/games', GamesController.getAllGames);
-    app.get('/api/games/:gameid', GamesController.getGameById);
-    app.put('/api/games/:gameid', GamesController.editGame);
-    app.delete('/api/games/:gameid', GamesController.deleteGame);
+    // app.get('/api/games/:gameid', GamesController.getGameById);
+    // app.put('/api/games/:gameid', GamesController.editGame);
+    // app.delete('/api/games/:gameid', GamesController.deleteGame);
 
     // DEVELOPER CRUD
-}
+};

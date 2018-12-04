@@ -8,7 +8,8 @@ mongoose.Promise = global.Promise;
 mongoose.set('useFindAndModify', false);
 
 if (process.env.NODE_ENV !== 'test') {
-    mongoose.connect('mongodb://localhost/game', { useNewUrlParser: true });
+    mongoose.connect('mongodb://admin:Secret123@ds151082.mlab.com:51082/game', { useNewUrlParser: true });
+    console.log('connected');
 }
 
 app.use(bodyParser.json());
