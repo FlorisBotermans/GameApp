@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const GameSchema = new Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
-    developers: DeveloperSchema,
+    developer: DeveloperSchema,
     characters: [CharacterSchema]
 });
 
