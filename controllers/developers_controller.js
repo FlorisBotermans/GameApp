@@ -6,7 +6,7 @@ module.exports = {
 
         Game.findById({ _id: req.params.gameid })
             .then(game => {
-                game.developers.push(developer);
+                game.developer = developer;
                 return game.save();
             })
             .then(() => res.send(developer))
