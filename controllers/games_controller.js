@@ -1,10 +1,18 @@
+const jwt = require('jsonwebtoken');
+
 const Game = require('../models/game');
 
 module.exports = {
     createGame(req, res, next) {
-        Game.create(new Game(req.body))
-            .then(game => res.send(game))
-            .catch(next);
+        jwt.verify(req.token, 'secretkey', (err, authData) => {
+            if(err) {
+                res.status(403).send();
+            } else {
+                Game.create(new Game(req.body))
+                    .then(game => res.send(game))
+                    .catch(next);
+            }
+        });
     }, 
 
     getAllGames(req, res, next) {
