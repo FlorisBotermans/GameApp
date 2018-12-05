@@ -12,11 +12,11 @@ module.exports = (app) => {
 
     // DEVELOPER CRUD
     app.post('/api/games/:gameid/developers', DevelopersController.createDeveloper);
-    app.put('/api/games/:gameid/developers/developerid', DevelopersController.editDeveloper);
+    app.put('/api/games/:gameid/developers/:developerid', DevelopersController.editDeveloper);
     app.delete('/api/games/:gameid/developers', DevelopersController.deleteDeveloper);
 
     // CHARACTER CRUD
     app.post('/api/games/:gameid/characters', CharactersController.createCharacter);
-    app.put('/api/games/:gameid/characters/characterid', CharactersController.editCharacter);
-    app.delete('/api/games/:gameid/characters/characterid', CharactersController.deleteCharacter);
+    app.put('/api/games/:gameid/characters/:characterid', CharactersController.editCharacter);
+    app.delete('/api/games/:gameid/characters/:characterid', CharactersController.deleteCharacter);
 };
