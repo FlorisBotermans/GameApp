@@ -19,7 +19,7 @@ module.exports = {
                 // Save User
                 try {
                     user.save()
-                        .then(() => res.send(201))
+                        .then(() => res.sendStatus(201))
                         .catch(next);
                 } catch(err) {
                     return next(new errors.InternalError(err.message));
