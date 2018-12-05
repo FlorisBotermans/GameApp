@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 module.exports = { 
     login(req, res, next) {
         const user = {
