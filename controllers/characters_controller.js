@@ -20,7 +20,7 @@ module.exports = {
     deleteCharacter(req, res, next) {
         Game.findByIdAndUpdate(
             { _id: req.params.gameid },
-            { $pull: { characters: { _id: req.params.developerid } } }
+            { $pull: { characters: { _id: req.params.characterid } } }
         )
         .then(game => res.status(204).send(game))
         .catch(next);
