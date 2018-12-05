@@ -36,7 +36,8 @@ module.exports = {
             auth.authenticate(email, password).then((user) => {
                 console.log(user);
                 next();
-            });
+            })
+            .catch(next);
         } catch(err) {
             // User unauthorized
             return next(new errors.UnauthorizedError(err));
