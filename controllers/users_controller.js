@@ -34,6 +34,7 @@ module.exports = {
         try {
             // Authenticate user
             auth.authenticate(email, password).then((user) => {
+                res.sendStatus(201);
                 console.log(user);
                 next();
             })
