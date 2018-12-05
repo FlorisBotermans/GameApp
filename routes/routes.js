@@ -8,19 +8,32 @@ module.exports = (app) => {
     app.post('/api/login', UsersController.login);
 
     // GAME CRUD
-    app.post('/api/games', GamesController.createGame);
-    app.get('/api/games', GamesController.getAllGames);
-    app.get('/api/games/:gameid', GamesController.getGameById);
-    app.put('/api/games/:gameid', GamesController.editGame);
-    app.delete('/api/games/:gameid', GamesController.deleteGame);
+    app.post('/api/games', verifyToken, GamesController.createGame);
+    app.get('/api/games', verifyToken, GamesController.getAllGames);
+    app.get('/api/games/:gameid', verifyToken, GamesController.getGameById);
+    app.put('/api/games/:gameid', verifyToken, GamesController.editGame);
+    app.delete('/api/games/:gameid', verifyToken, GamesController.deleteGame);
 
     // DEVELOPER CRUD
-    app.post('/api/games/:gameid/developers', DevelopersController.createDeveloper);
-    app.put('/api/games/:gameid/developers/:developerid', DevelopersController.editDeveloper);
-    app.delete('/api/games/:gameid/developers', DevelopersController.deleteDeveloper);
+    app.post('/api/games/:gameid/developers', verifyToken, DevelopersController.createDeveloper);
+    app.put('/api/games/:gameid/developers/:developerid', verifyToken, DevelopersController.editDeveloper);
+    app.delete('/api/games/:gameid/developers', verifyToken, DevelopersController.deleteDeveloper);
 
     // CHARACTER CRUD
-    app.post('/api/games/:gameid/characters', CharactersController.createCharacter);
-    app.put('/api/games/:gameid/characters/:characterid', CharactersController.editCharacter);
-    app.delete('/api/games/:gameid/characters/:characterid', CharactersController.deleteCharacter);
+    app.post('/api/games/:gameid/characters', verifyToken, CharactersController.createCharacter);
+    app.put('/api/games/:gameid/characters/:characterid', verifyToken, CharactersController.editCharacter);
+    app.delete('/api/games/:gameid/characters/:characterid', verifyToken, CharactersController.deleteCharacter);
+
+    // Verify Token
+    function verifyToken(req, res, next) {
+        // Get auth header value
+        const bearerHeader = req.headers['authorization'];
+
+        // Check if bearer is undefined
+        if(typeof bearerHeader !== 'undefined') {
+
+        } else {
+            res.sendStatus(403);
+        }
+    }
 };
