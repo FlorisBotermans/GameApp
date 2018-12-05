@@ -33,7 +33,10 @@ module.exports = {
 
         try {
             // Authenticate user
-            auth.authenticate(email, password).then(() => next());
+            auth.authenticate(email, password).then((user) => {
+                console.log(user);
+                next();
+            });
         } catch(err) {
             // User unauthorized
             return next(new errors.UnauthorizedError(err));
