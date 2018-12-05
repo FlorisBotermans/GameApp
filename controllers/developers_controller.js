@@ -20,7 +20,7 @@ module.exports = {
     deleteDeveloper(req, res, next) {
         Game.findByIdAndUpdate(
             { _id: req.params.gameid },
-            { $pull: { developers: { _id: req.params.developerid } } }
+            { $unset: { developer: '' } } 
         )
         .then(game => res.status(204).send(game))
         .catch(next);

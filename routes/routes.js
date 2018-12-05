@@ -13,7 +13,7 @@ module.exports = (app) => {
     // DEVELOPER CRUD
     app.post('/api/games/:gameid/developers', DevelopersController.createDeveloper);
     app.put('/api/games/:gameid/developers/developerid', DevelopersController.editDeveloper);
-    app.delete('/api/games/:gameid/developers/:developerid', DevelopersController.deleteDeveloper);
+    app.delete('/api/games/:gameid/developers', DevelopersController.deleteDeveloper);
 
     // CHARACTER CRUD
     app.post('/api/games/:gameid/characters', CharactersController.createCharacter);

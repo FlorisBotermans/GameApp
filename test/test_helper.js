@@ -10,12 +10,8 @@ before(done => {
 });
 
 beforeEach(done => {
-    const { games, developers, characters } = mongoose.connection.collections;
+    const { games } = mongoose.connection.collections;
     games.drop(() => {
-        developers.drop(() => {
-            characters.drop(() => {
-                done();
-            });
-        });
+        done();
     });
 });
