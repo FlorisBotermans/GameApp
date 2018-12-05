@@ -17,7 +17,8 @@ exports.authenticate = (email, password) => {
                             reject('Authentication failed');
                         }
                     });
-                });
+                })
+                .catch(() => reject('Authentication failed'));
         } catch(err) {
             // Email not found
             reject('Authentication failed');
