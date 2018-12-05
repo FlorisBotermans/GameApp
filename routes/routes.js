@@ -1,8 +1,12 @@
+const UsersController = require('../controllers/users_controller');
 const GamesController = require('../controllers/games_controller');
 const DevelopersController = require('../controllers/developers_controller');
 const CharactersController = require('../controllers/characters_controller');
 
 module.exports = (app) => {
+    // LOGIN CRUD
+    app.post('/api/login', UsersController.login);
+
     // GAME CRUD
     app.post('/api/games', GamesController.createGame);
     app.get('/api/games', GamesController.getAllGames);
