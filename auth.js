@@ -5,8 +5,9 @@ exports.authenticate = (email, password) => {
     return new Promise((resolve, reject) => {
         try {
             // Get user by email
-            User.findOne({ email: email})
+            User.findOne({ email })
                 .then((user) => {
+                    console.log(user);
                     bcrypt.compare(password, user.password, (err, isMatch) => {
                         if(err) throw err;
                         if(isMatch) {
