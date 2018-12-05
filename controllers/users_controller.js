@@ -1,13 +1,13 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const errors = require('restify-errors');
+const auth = require('../auth');
 
 const User = require('../models/user');
 
 module.exports = {
     register(req, res, next) {
         const user = new User({
-            userName: req.body.userName,
             email: req.body.email,
             password: req.body.password
         });
@@ -28,9 +28,20 @@ module.exports = {
         });
     },
 
+    auth(req, res, next) {
+        const { email, password } = req.body;
+
+        try {
+            // Authenticate user
+            const user = auth.authenticate(email, password);
+        } catch(err) {
+            // User unauthorized
+            return next(new errors.UnauthorizedError(err));
+        }
+    },
+
     login(req, res, next) {
         const user = new User({
-            userName: req.body.userName,
             email: req.body.email,
             password: req.body.password
         });
