@@ -6,7 +6,7 @@ exports.authenticate = (email, password) => {
         try {
             // Get user by email
             User.findOne({ email: email})
-                .then(() => {
+                .then((user) => {
                     bcrypt.compare(password, user.password, (err, isMatch) => {
                         if(err) throw err;
                         if(isMatch) {

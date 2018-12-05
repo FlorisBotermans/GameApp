@@ -33,7 +33,7 @@ module.exports = {
 
         try {
             // Authenticate user
-            const user = auth.authenticate(email, password).then(() => {
+            auth.authenticate(email, password).then((user) => {
                 console.log(user);
                 next();
             });
