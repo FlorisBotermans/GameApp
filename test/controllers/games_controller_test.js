@@ -9,7 +9,7 @@ describe('Game controller', () => {
     it('POST to api/games creates a new game', done => {
         request(app)
             .post('/api/games')
-            .send({ name: 'testName', description: 'testDescription' })
+            .send({ name: 'testName', description: 'testDescription', platform: 'testPlatform', category: 'testCategory' })
             .end(() => {
                 Game.findOne({ name: 'testName' })
                     .then(user => {
@@ -20,8 +20,8 @@ describe('Game controller', () => {
     });
 
     it('GET to api/games retrieves all games', done => {
-        const game1 = new Game({ name: 'testName1', description: 'testDescription1' });
-        const game2 = new Game({ name: 'testName2', description: 'testDescription2' });
+        const game1 = new Game({ name: 'testName1', description: 'testDescription1', platform: 'testPlatform1', category: 'testCategory1' });
+        const game2 = new Game({ name: 'testName2', description: 'testDescription2', platform: 'testPlatform2', category: 'testCategory2' });
 
         Promise.all([game1.save(), game2.save()])
             .then(() => {
@@ -35,7 +35,7 @@ describe('Game controller', () => {
     });
 
     it('GET  to api/games/gameid retrieves a specific game', done => {
-        const game = new Game({ name: 'testName', description: 'testDescription' });
+        const game = new Game({ name: 'testName', description: 'testDescription', platform: 'testPlatform', category: 'testCategory' });
 
         game.save().then(() => {
             request(app)
@@ -48,7 +48,7 @@ describe('Game controller', () => {
     });
 
     it('DELETE to api/games/gameid deletes a game', done => {
-        const game = new Game({ name: 'testName', description: 'testDescription' });
+        const game = new Game({ name: 'testName', description: 'testDescription', platform: 'testPlatform', category: 'testCategory' });
 
         game.save().then(() => {
             request(app)

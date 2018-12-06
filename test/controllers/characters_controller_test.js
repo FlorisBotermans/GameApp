@@ -7,12 +7,12 @@ const Game = mongoose.model('game');
 
 describe('Developer controller', () => {
     it('POST to api/games/gameid/characters creates a new character of a game', done => {
-        const game = new Game({ name: 'testName1', description: 'testDescription1' });
+        const game = new Game({ name: 'testName1', description: 'testDescription1', platform: 'testPlatform1', category: 'testCategory1' });
 
         game.save().then(() => {
             request(app)
                 .post('/api/games/' + game._id + '/characters')
-                .send({ name: 'testName2', description: 'testDescription2' })
+                .send({ name: 'testName2', title: 'testTitle2', role: 'testRole2' })
                 .end((err, response) => {
                     assert(response.body.name === 'testName2');
                     done();
@@ -21,7 +21,7 @@ describe('Developer controller', () => {
     });
 
     it('DELETE to /api/games/gameid/characters/characterid deletes a character of a game', done => {
-        const game = new Game({ name: 'testName1', description: 'testDescription1', characters: [{ name: 'testName2', description: 'testDescription2' }] });
+        const game = new Game({ name: 'testName1', description: 'testDescription1', platform: 'testPlatform', category: 'testCategory', characters: [{ name: 'testName2', title: 'testTitle2', role: 'testRole2' }] });
 
         game.save().then(() => {
             request(app)

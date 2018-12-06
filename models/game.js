@@ -6,6 +6,8 @@ const Schema = mongoose.Schema;
 const GameSchema = new Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
+    platform: { type: String, required: true },
+    category: { type: String, required: true },
     developer: DeveloperSchema,
     characters: [CharacterSchema]
 });
