@@ -19,7 +19,7 @@ module.exports = {
             .then((user) => {
                 if (user) {
                     if (user.isValid(req.body.password)) {
-                        let token = jwt.sign({username: user.userName}, 'secret', {expiresIn: '2d'});
+                        let token = jwt.sign({userName: user.userName}, 'secret', {expiresIn: '2d'});
 
                         res.status(200).send(token);
                     } else {
