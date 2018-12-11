@@ -16,7 +16,7 @@ module.exports = {
     editCharacter(req, res, next) {
         Game.findById({ _id: req.params.gameid })
             .then((game) => {
-                var character = game.comments._id(req.params.characterid);
+                var character = game.comments.id(req.params.characterid);
                 character.set(req.body);
                 return character;
             })
