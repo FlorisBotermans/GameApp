@@ -18,7 +18,7 @@ module.exports = {
             { _id: req.params.gameid, characters: { _id : req.params.characterid } },
             { 
                 $set: {
-                    "characters.$": {
+                    "characters._id": {
                         name: req.body.name,
                         title: req.body.title,
                         role: req.body.role
