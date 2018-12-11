@@ -13,6 +13,15 @@ module.exports = {
             .catch(next);
     }, 
 
+    getCharacterById(req, res, next) {
+        Game.findOne({ "characters": { _id: req.params.characterid } })
+            .then((character) => {
+                res.send(character);
+                console.log(character);
+            })
+            .catch(next);
+    },
+
     editCharacter(req, res, next) {
         Game.updateOne(
             { _id: req.params.gameid, "characters._id": req.params.characterid },
