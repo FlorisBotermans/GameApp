@@ -14,14 +14,12 @@ module.exports = {
     }, 
 
     editCharacter(req, res, next) {
-        Game.findById({ _id: req.params.gameid })
-            .then((game) => {
-                var character = game.characters.id(req.params.characterid);
-                character.set(req.body);
-                return character;
-            })
-            .then(character => res.send(character))
-            .catch(next);
+        Game.updateOne(
+            { _id: req.params.gameid, "characters._id": req.params.characterid },
+            { $set: { "characters.$.name": req.body.name, "characters.$.title": req.body.title, "characters.$.role": req.body.role } }
+        )
+        .then(game => res.send(game))
+        .catch(next);
     },
 
     deleteCharacter(req, res, next) {
