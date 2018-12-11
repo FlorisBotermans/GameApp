@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt');
 const UserSchema = new Schema({
     email: { type: String, required: true },
     userName: { type: String, required: true },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    creation_dt: { type: Date, required: true }
 });
 
 UserSchema.statics.hashPassword = function hashPassword(password) {
