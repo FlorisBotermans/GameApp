@@ -14,20 +14,10 @@ module.exports = {
     }, 
 
     editCharacter(req, res, next) {
-        Game.findByIdAndUpdate(
-            { _id: req.params.gameid, characters: { _id : req.params.characterid } },
-            { 
-                $set: {
-                    "characters._id": {
-                        name: req.body.name,
-                        title: req.body.title,
-                        role: req.body.role
-                    }
-                }
-            } 
-        )
-        .then(game => res.send(game))
-        .catch(next);
+        Game.findById({ _id: req.params.gameid })
+            .then((game) => game.characters.remove({ _id: req.params.characterid }))
+            .then(game => res.send(game))
+            .catch(next);
     },
 
     deleteCharacter(req, res, next) {
