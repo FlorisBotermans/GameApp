@@ -24,7 +24,7 @@ module.exports = {
     editGame(req, res, next) {
         Game.findByIdAndUpdate(
             { _id: req.params.gameid },
-            { name: req.body.name, description: req.body.description }
+            { name: req.body.name, description: req.body.description, platform: req.body.platform, category: req.body.category }
         )
         .then(game => res.send(game))
         .catch(next);
