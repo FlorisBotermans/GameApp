@@ -9,23 +9,14 @@ module.exports = {
     register(req, res, next) {
         const user = new User({
             email: req.body.email,
-            password: req.body.password
+            userName: req.body.userName,
+            password: User.hashPassword(req.body.password)
         });
 
-        bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(user.password, salt, (err, hash) => {
-                // Hash Password
-                user.password = hash;
-                // Save User
-                try {
-                    user.save()
-                        .then(() => res.sendStatus(201))
-                        .catch(next);
-                } catch(err) {
-                    return next(new errors.InternalError(err.message));
-                }
-            });
-        });
+        user.save()
+            .then((user) => res.status(201).send(user))
+            .catch(next);
+
     },
 
     auth(req, res, next) {
