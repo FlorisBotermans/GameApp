@@ -14,12 +14,15 @@ module.exports = {
     }, 
 
     getCharacterById(req, res, next) {
-        Game.findOne({ "characters": { _id: req.params.characterid } })
-            .then((character) => {
-                res.send(character);
-                console.log(character);
-            })
-            .catch(next);
+        Game.findOne({ _id: req.params.gameid })
+            .then((game) => {
+                game.character.findOne({ _id: req.params.characterid })
+                    .then((character) => {
+                        console.log(character);
+                        res.send(character);
+                    })
+                    .catch(next);
+            });
     },
 
     editCharacter(req, res, next) {
