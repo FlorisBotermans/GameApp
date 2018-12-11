@@ -6,6 +6,7 @@ const CharactersController = require('../controllers/characters_controller');
 module.exports = (app) => {
     // LOGIN CRUD
     app.post('/api/register', UsersController.register);
+    app.post('/api/login', UsersController.login);
 
     // GAME CRUD
     app.post('/api/games', GamesController.createGame);
