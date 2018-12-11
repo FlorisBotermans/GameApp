@@ -1,5 +1,3 @@
-const jwt = require('jsonwebtoken');
-
 const Game = require('../models/game');
 
 module.exports = {
