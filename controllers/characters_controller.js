@@ -14,7 +14,18 @@ module.exports = {
     }, 
 
     editCharacter(req, res, next) {
-        // CREATE LATER
+        Game.findByIdAndUpdate(
+            { "_id": req.params.gameid, "characters._id": req.params.characterid },
+            { 
+                "$set": {
+                    "characters.$.name": req.body.name,
+                    "characters.$.title": req.body.title,
+                    "characters.$.role": req.body.role
+                }
+            } 
+        )
+        .then(game => res.send(game))
+        .catch(next);
     },
 
     deleteCharacter(req, res, next) {
