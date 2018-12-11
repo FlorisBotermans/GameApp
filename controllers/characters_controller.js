@@ -15,10 +15,10 @@ module.exports = {
 
     editCharacter(req, res, next) {
         Game.findByIdAndUpdate(
-            { _id: req.params.gameid, "characters._id": req.params.characterid },
+            { _id: req.params.gameid, characters: req.params.characterid },
             { 
                 $set: {
-                    characters: {
+                    "characters.$": {
                         name: req.body.name,
                         title: req.body.title,
                         role: req.body.role
