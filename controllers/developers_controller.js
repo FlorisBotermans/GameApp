@@ -13,10 +13,6 @@ module.exports = {
             .catch(next);
     }, 
 
-    editDeveloper(req, res, next) {
-        // CREATE LATER
-    },
-
     deleteDeveloper(req, res, next) {
         Game.findByIdAndUpdate(
             { _id: req.params.gameid },
