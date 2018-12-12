@@ -21,7 +21,7 @@ module.exports = {
                     if (user.isValid(req.body.password)) {
                         let token = jwt.sign({userName: user.userName}, 'secret', {expiresIn: '2d'});
 
-                        res.status(200).send(token);
+                        return res.status(200).json(token);
                     } else {
                         res.status(501).send('Invalid Credentials');
                     }

@@ -22,7 +22,6 @@ module.exports = (app) => {
 
     // CHARACTER CRUD
     app.post('/api/games/:gameid/characters', CharactersController.createCharacter);
-    app.get('/api/games/:gameid/characters/:characterid', CharactersController.getCharacterById);
     app.put('/api/games/:gameid/characters/:characterid', CharactersController.editCharacter);
     app.delete('/api/games/:gameid/characters/:characterid', CharactersController.deleteCharacter);
 };
