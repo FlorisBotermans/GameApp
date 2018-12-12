@@ -33,6 +33,6 @@ module.exports = {
     },
 
     username(req, res, next) {
-        return res.status(200).json(decodedToken.userName)
+        return res.status(200).json(decodedToken.userName);
     }
 }
