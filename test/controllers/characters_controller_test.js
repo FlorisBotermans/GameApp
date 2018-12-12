@@ -20,6 +20,23 @@ describe('Developer controller', () => {
         });
     });
 
+    it('PUT to /api/games/gameid/characters/characterid edits a character of a game', done => {
+        const game = new Game({ name: 'testName1', description: 'testDescription1', platform: 'testPlatform', category: 'testCategory', characters: [{ name: 'testName2', title: 'testTitle2', role: 'testRole2' }] });
+
+        game.save().then(() => {
+            request(app)
+                .put('/api/games/' + game._id + '/characters/' + game.characters[0]._id)
+                .send({ name: 'testName3', title: 'testTitle3', role: 'testRole3' })
+                .end(() => {
+                    Game.findOne({ name: 'testName1' })
+                        .then((game) => {
+                            assert(game.characters[0].name === 'testName3');
+                            done();
+                        });
+                });
+        });
+    });
+
     it('DELETE to /api/games/gameid/characters/characterid deletes a character of a game', done => {
         const game = new Game({ name: 'testName1', description: 'testDescription1', platform: 'testPlatform', category: 'testCategory', characters: [{ name: 'testName2', title: 'testTitle2', role: 'testRole2' }] });
 
