@@ -7,7 +7,9 @@ module.exports = (app) => {
     // USER CRUD
     app.post('/api/register', UsersController.register);
     app.post('/api/login', UsersController.login);
-    app.get('/api/username', verifyToken, UsersController.getUsername);
+    app.get('/api/username', verifyToken, function(req, res, next) {
+        return res.status(200).json(decodedToken.userName);
+    })
 
     // GAME CRUD
     app.post('/api/games', GamesController.createGame);
