@@ -2,6 +2,7 @@ const UsersController = require('../controllers/users_controller');
 const GamesController = require('../controllers/games_controller');
 const DevelopersController = require('../controllers/developers_controller');
 const CharactersController = require('../controllers/characters_controller');
+const jwt = require('jsonwebtoken');
 
 module.exports = (app) => {
     // USER CRUD
