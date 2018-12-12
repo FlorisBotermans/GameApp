@@ -7,7 +7,7 @@ module.exports = (app) => {
     // USER CRUD
     app.post('/api/register', UsersController.register);
     app.post('/api/login', UsersController.login);
-    app.get('/api/username', verifyToken, UsersController.getUsername);
+    app.get('/api/username', UsersController.getUsername, verifyToken);
 
     // GAME CRUD
     app.post('/api/games', GamesController.createGame);
