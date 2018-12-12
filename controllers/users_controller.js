@@ -30,5 +30,9 @@ module.exports = {
                 }
             })
             .catch(() => res.status(501).send('Some internal error'));
+    },
+
+    username(req, res, next) {
+        return res.status(200).json(decodedToken.userName)
     }
 }
