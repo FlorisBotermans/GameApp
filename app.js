@@ -13,9 +13,7 @@ if (process.env.NODE_ENV !== 'test') {
     console.log('connected');
 }
 
-app.use(cors({
-    origin: 'http://localhost:4200'
-}));
+app.use(cors());
 
 app.use(bodyParser.json());
 routes(app);
