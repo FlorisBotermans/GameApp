@@ -7,9 +7,7 @@ module.exports = (app) => {
     // USER CRUD
     app.post('/api/register', UsersController.register);
     app.post('/api/login', UsersController.login);
-    app.get('/api/username', verifyToken, function(req, res, next) {
-        return res.status(200).json(decodedToken.userName);
-    })
+    app.get('/api/username', verifyToken, UsersController.getUsername);
 
     // GAME CRUD
     app.post('/api/games', GamesController.createGame);
@@ -28,10 +26,9 @@ module.exports = (app) => {
     app.put('/api/games/:gameid/characters/:characterid', CharactersController.editCharacter);
     app.delete('/api/games/:gameid/characters/:characterid', CharactersController.deleteCharacter);
 
-    var decodedToken = '';
+    let decodedToken = '';
     function verifyToken(req, res, next) {
         let token = req.query.token;
-
         jwt.verify(token, 'secret', function(err, tokendata) {
             if (err) {
                 return res.status(400).json({message: 'Unauthorized request'});
