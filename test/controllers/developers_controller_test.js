@@ -21,11 +21,11 @@ describe('Developer controller', () => {
     });
 
     it('DELETE to /api/games/gameid/developers/developerid deletes the developer of a game', done => {
-        const game = new Game({ name: 'testName1', description: 'testDescription1', platform: 'testPlatform1', category: 'testCategory1', developer: { name: 'testName2' } });
+        const game = new Game({ name: 'testName1', description: 'testDescription1', platform: 'testPlatform1', category: 'testCategory1', developers: [{ name: 'testName2' }] });
 
         game.save().then(() => {
             request(app)
-                .delete('/api/games/' + game._id + '/developers')
+                .delete('/api/games/' + game._id + '/developers/' + game.developers[0]._id)
                 .end((err, response) => {
                     assert(response.status === 204);
                     done();

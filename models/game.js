@@ -8,7 +8,7 @@ const GameSchema = new Schema({
     description: { type: String, required: true },
     platform: { type: String, required: true },
     category: { type: String, required: true },
-    developer: DeveloperSchema,
+    developers: [DeveloperSchema],
     characters: [CharacterSchema]
 });
 

@@ -21,7 +21,8 @@ module.exports = (app) => {
 
     // DEVELOPER CRUD
     app.post('/api/games/:gameid/developers', DevelopersController.createDeveloper);
-    app.delete('/api/games/:gameid/developers', DevelopersController.deleteDeveloper);
+    app.put('/api/games/:gameid/developers/:developerid', DevelopersController.editDeveloper);
+    app.delete('/api/games/:gameid/developers/:developerid', DevelopersController.deleteDeveloper);
 
     // CHARACTER CRUD
     app.post('/api/games/:gameid/characters', CharactersController.createCharacter);

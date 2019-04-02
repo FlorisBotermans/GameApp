@@ -16,7 +16,7 @@ module.exports = {
     getCharacterById(req, res, next) {
         Game.findOne({ _id: req.params.gameid })
             .then((game) => {
-                game.characters.find({ _id: req.params.characterid })
+                game.characters.findOne({ _id: req.params.characterid })
                     .then((character) => {
                         console.log(character);
                         res.send(character);
