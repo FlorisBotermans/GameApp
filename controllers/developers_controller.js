@@ -14,15 +14,17 @@ module.exports = {
     }, 
 
     getDeveloperById(req, res, next) {
+        var developer = null;
         Game.findOne({ _id: req.params.gameid })
             .then((game) => {
-                game.developers.findOne({ _id: req.params.developerid })
-                    .then((developer) => {
-                        console.log(developer);
-                        res.send(developer);
-                    })
-                    .catch(next);
-            });
+                game.developers.forEach(dev => {
+                    if(dev._id == req.params.developerid) {
+                        developer = dev;
+                    }
+                });       
+                res.send(developer);     
+            })
+            .catch(next);
     },
 
     editDeveloper(req, res, next) {
