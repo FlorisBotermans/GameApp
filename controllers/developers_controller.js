@@ -13,6 +13,12 @@ module.exports = {
             .catch(next);
     }, 
 
+    getDevelopers(req, res, next) {
+        Game.findOne({ _id: req.params.gameid })
+            .then((game) => res.send(game.developers))
+            .catch(next);
+    },
+
     getDeveloperById(req, res, next) {
         var developer = null;
         Game.findOne({ _id: req.params.gameid })

@@ -7,7 +7,7 @@ module.exports = {
             .catch(next);
     }, 
 
-    getAllGames(req, res, next) {
+    getGames(req, res, next) {
         Game.find()
             .then(games => res.send(games))
             .catch(next);

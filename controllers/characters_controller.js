@@ -13,6 +13,12 @@ module.exports = {
             .catch(next);
     }, 
 
+    getCharacters(req, res, next) {
+        Game.findOne({ _id: req.params.gameid })
+            .then((game) => res.send(game.characters))
+            .catch(next);
+    },
+
     getCharacterById(req, res, next) {
         var character = null;
         Game.findOne({ _id: req.params.gameid })
