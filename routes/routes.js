@@ -2,48 +2,31 @@ const UsersController = require('../controllers/users_controller');
 const GamesController = require('../controllers/games_controller');
 const DevelopersController = require('../controllers/developers_controller');
 const CharactersController = require('../controllers/characters_controller');
-const jwt = require('jsonwebtoken');
+const verifyToken = require('../middleware/verify_token');
 
 module.exports = (app) => {
     // USER CRUD
-    app.post('/api/register', UsersController.register);
     app.post('/api/login', UsersController.login);
-    app.get('/api/username', verifyToken, function(req, res, next){
-        return res.status(200).json(decodedToken.userName);
-    });
+    app.post('/api/register', UsersController.register);
 
     // GAME CRUD
-    app.post('/api/games', GamesController.createGame);
-    app.get('/api/games', GamesController.getGames);
-    app.get('/api/games/:gameid', GamesController.getGameById);
-    app.put('/api/games/:gameid', GamesController.editGame);
-    app.delete('/api/games/:gameid', GamesController.deleteGame);
+    app.post('/api/games', verifyToken, GamesController.createGame);
+    app.get('/api/games', verifyToken, GamesController.getGames);
+    app.get('/api/games/:gameid', verifyToken, GamesController.getGameById);
+    app.put('/api/games/:gameid', verifyToken, GamesController.editGame);
+    app.delete('/api/games/:gameid', verifyToken, GamesController.deleteGame);
 
     // DEVELOPER CRUD
-    app.post('/api/games/:gameid/developers', DevelopersController.createDeveloper);
-    app.get('/api/games/:gameid/developers', DevelopersController.getDevelopers);
-    app.get('/api/games/:gameid/developers/:developerid', DevelopersController.getDeveloperById);
-    app.put('/api/games/:gameid/developers/:developerid', DevelopersController.editDeveloper);
-    app.delete('/api/games/:gameid/developers/:developerid', DevelopersController.deleteDeveloper);
+    app.post('/api/games/:gameid/developers', verifyToken, DevelopersController.createDeveloper);
+    app.get('/api/games/:gameid/developers', verifyToken, DevelopersController.getDevelopers);
+    app.get('/api/games/:gameid/developers/:developerid', verifyToken, DevelopersController.getDeveloperById);
+    app.put('/api/games/:gameid/developers/:developerid', verifyToken, DevelopersController.editDeveloper);
+    app.delete('/api/games/:gameid/developers/:developerid', verifyToken, DevelopersController.deleteDeveloper);
 
     // CHARACTER CRUD
-    app.post('/api/games/:gameid/characters', CharactersController.createCharacter);
-    app.get('/api/games/:gameid/characters', CharactersController.getCharacters);
-    app.get('/api/games/:gameid/characters/:characterid', CharactersController.getCharacterById);
-    app.put('/api/games/:gameid/characters/:characterid', CharactersController.editCharacter);
-    app.delete('/api/games/:gameid/characters/:characterid', CharactersController.deleteCharacter);
-
-    let decodedToken = '';
-    function verifyToken(req, res, next) {
-        let token = req.query.token;
-        jwt.verify(token, 'secret', function(err, tokendata) {
-            if (err) {
-                return res.status(400).json({message: 'Unauthorized request'});
-            }
-            if (tokendata) {
-                decodedToken = tokendata;
-                next();
-            }
-        })
-    }
+    app.post('/api/games/:gameid/characters', verifyToken, CharactersController.createCharacter);
+    app.get('/api/games/:gameid/characters', verifyToken, CharactersController.getCharacters);
+    app.get('/api/games/:gameid/characters/:characterid', verifyToken, CharactersController.getCharacterById);
+    app.put('/api/games/:gameid/characters/:characterid', verifyToken, CharactersController.editCharacter);
+    app.delete('/api/games/:gameid/characters/:characterid', verifyToken, CharactersController.deleteCharacter);
 };
