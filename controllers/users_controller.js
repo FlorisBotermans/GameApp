@@ -11,10 +11,10 @@ module.exports = {
 
                         return res.status(200).json(token);
                     } else {
-                        res.status(401).send('Invalid Credentials');
+                        res.status(401).send({ Error: 'Invalid password' });
                     }
                 } else {
-                    res.status(404).send('User email is not registered.')
+                    res.status(404).send({ Error: 'Email is not registered' })
                 }
             })
             .catch(() => res.status(501).send('Internal error'));
