@@ -14,7 +14,7 @@ module.exports = {
                         res.status(401).send({ Error: 'Invalid password' });
                     }
                 } else {
-                    res.status(404).send({ Error: 'Email is not registered' })
+                    res.status(401).send({ Error: 'Email is not registered' })
                 }
             })
             .catch(() => res.status(501).send('Internal error'));
